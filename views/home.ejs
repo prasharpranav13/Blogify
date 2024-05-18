@@ -3,11 +3,65 @@
 
 <head>
   <%- include("./partials/head") %>
+  <style>
+    .bodyContainer {
+      height: 100vh;
+
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      justify-content: center;
+    }
+
+    body {
+      background-image: url("/images/blogImg.jpg");
+      background-position: center;
+      background-size: 550px;
+      background-repeat: no-repeat;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    span {
+      color: rgb(253, 129, 5);
+    }
+
+    .cardCss {
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      height: 280px;
+      width: 100px;
+      object-fit: cover;
+    }
+
+    .blogsContainer {
+      margin-top: 50px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+  </style>
   <title>Home</title>
 </head>
 
 <body>
   <%- include("./partials/nav") %>
+  <div class="bodyContainer">
+    <h1 class="bodyTitle">Welcome to <span>Blogify</span></h1>
+    <div class="blogsContainer">
+      <% blogs.forEach(blog => { %>
+      <div class="card cardCss" style="width: 18rem;">
+        <img src="<%= blog.coverImgUrl %>" class=" card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><%= blog.title %></h5>
+          <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </div>
   <%- include("./partials/scripts") %>
 </body>
 
