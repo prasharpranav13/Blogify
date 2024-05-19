@@ -4,18 +4,23 @@
 <head>
   <%- include("./partials/head") %>
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     .bodyContainer {
       height: 100vh;
-
       font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
       justify-content: center;
     }
 
     body {
-      background-image: url("/images/blogImg.jpg");
+      /* background-image: url("/images/blogImg.jpg");
       background-position: center;
       background-size: 550px;
-      background-repeat: no-repeat;
+      background-repeat: no-repeat; */
     }
 
     h1 {
@@ -30,9 +35,19 @@
 
     .cardCss {
       box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-      height: 280px;
-      width: 100px;
+      height: 360px;
+      width: 255px;
+      position: relative;
+      overflow: hidden;
       object-fit: cover;
+      object-position: center;
+    }
+
+    .imgCss {
+      height: 240px;
+      width: 100%;
+      /* object-fit: cover;
+      object-position: center; */
     }
 
     .blogsContainer {
@@ -41,6 +56,23 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 15px;
+    }
+
+    .btnCss {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background-color: rgb(253, 129, 5);
+      color: white;
+    }
+
+    .btnCss:hover {
+      background-color: rgb(238, 132, 25);
+      color: white;
+    }
+
+    h5 {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
   </style>
   <title>Home</title>
@@ -52,11 +84,11 @@
     <h1 class="bodyTitle">Welcome to <span>Blogify</span></h1>
     <div class="blogsContainer">
       <% blogs.forEach(blog => { %>
-      <div class="card cardCss" style="width: 18rem;">
-        <img src="<%= blog.coverImgUrl %>" class=" card-img-top" alt="...">
+      <div class="card cardCss">
+        <img src="<%= blog.coverImgUrl %>" class=" card-img-top imgCss" alt="...">
         <div class="card-body">
           <h5 class="card-title"><%= blog.title %></h5>
-          <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
+          <a href="/blog/<%= blog._id %>" class="btn  btnCss">View</a>
         </div>
       </div>
       <% }) %>
